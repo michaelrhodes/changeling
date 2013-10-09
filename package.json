@@ -1,0 +1,32 @@
+{
+  "name": "changeling",
+  "version": "0.0.0",
+  "description": "A readable stream that watches a file for changes and then outputs its contents.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "node-watch": "~0.3.4"
+  },
+  "devDependencies": {
+    "tape": "~1.1.1"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaelrhodes/changeling.git"
+  },
+  "keywords": [
+    "watch",
+    "file",
+    "stream"
+  ],
+  "author": "Michael Rhodes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelrhodes/changeling/issues"
+  }
+}
