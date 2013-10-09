@@ -14,9 +14,9 @@ var text = [
 // Add the first line to the letter and
 // start listening for changes.
 fs.writeFileSync(path, text[0])
+letter = changeling(path)
 
 run('announce update', function(test) {
-  letter = changeling(path)
   letter.on('data', function(content) {
     test.equal(
       content.toString(), text.join(''),
@@ -40,5 +40,7 @@ run('announce deletion', function(test) {
   })
 
   // Delete letter.
-  fs.unlink(path) 
+  setTimeout(function() {
+    fs.unlink(path)
+  }, 1000)
 })
