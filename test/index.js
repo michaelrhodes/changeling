@@ -36,7 +36,7 @@ run('announce deletion', function(test) {
       'should mention deletion'
     )
     test.end()
-    process.exit(0)
+    letter.close()
   })
 
   // Delete letter.

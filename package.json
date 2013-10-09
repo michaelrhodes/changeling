@@ -1,14 +1,12 @@
 {
   "name": "changeling",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A readable stream that watches a file for changes and then outputs its contents.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "node-watch": "~0.3.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "tape": "~1.1.1"
   },

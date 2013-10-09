@@ -1,8 +1,9 @@
 var fs = require('fs')
+var path = require('path')
 var util = require('util')
 var stream = require('stream')
-var watch = require('node-watch')
 
+var watcher
 var Changeling = function(file) {
   if (!(this instanceof Changeling)) {
     return new Changeling(file)
@@ -13,6 +14,12 @@ var Changeling = function(file) {
 }
 
 util.inherits(Changeling, stream.Readable)
+
+Changeling.prototype.close = function() {
+  if (watcher) {
+    watcher.close() 
+  }
+}
 
 Changeling.prototype._read = function() {
   var thy = this
@@ -43,8 +50,11 @@ Changeling.prototype._read = function() {
       }) 
    
     // Watch it for changes
-    watch(thy.file, function() {
-      fs.stat(thy.file, update) 
+    var directory = path.resolve(thy.file, '..')
+    watcher = fs.watch(directory, function(e, file) {
+      if (file === path.basename(thy.file)) {
+        fs.stat(thy.file, update)
+      }
     })
   })
 
