@@ -11,14 +11,18 @@ npm install changeling
 ### Example
 ``` js
 var changeling = require('changeling')
+var file = changeling('/path/to/file')
 
-changeling('/path/to/file')
-  .on('error', function(error) {
-    // An error will be thrown if
-    // the watched file gets deleted.
-  })
-  .pipe(process.stdout)
+file.pipe(process.stdout)
+
+// Stop watching after 10 seconds
+setTimeout(function() {
+  file.close()
+}, 10000)
 ```
+
+#### Note
+If a file is deleted while being watched, an error will be emitted from the relevant changeling object.
 
 ### License
 [MIT](http://opensource.org/licenses/MIT)
