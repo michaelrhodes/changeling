@@ -56,7 +56,7 @@ Changeling.prototype._read = function() {
     // the middle of saving.
     if (error) {
       return deleted = setTimeout(
-        kill, 1, 'has been deleted'
+        kill, 1000, 'has been deleted'
       )
     }
    
