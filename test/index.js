@@ -14,10 +14,10 @@ var text = [
 // Add the first line to the letter and
 // start listening for changes.
 fs.writeFileSync(path, text[0])
-letter = changeling(path)
 
 run('announce update', function(test) {
-  letter.once('data', function(content) {
+  letter = changeling(path)
+  letter.on('data', function(content) {
     test.equal(
       content.toString(), text.join(''),
       'should have updated'
@@ -30,17 +30,15 @@ run('announce update', function(test) {
 })
 
 run('announce deletion', function(test) {
-  letter.once('error', function(error) {
+  letter.on('error', function(error) {
     test.assert(
       /has been deleted/.test(error.message),
       'should mention deletion'
     )
     test.end()
-    letter.close()
+    process.exit(0)
   })
 
   // Delete letter.
-  setTimeout(function() {
-    fs.unlink(path) 
-  }, 1000)
+  fs.unlink(path) 
 })
