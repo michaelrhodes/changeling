@@ -1,6 +1,6 @@
 {
   "name": "changeling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A readable stream that watches a file for changes and then outputs its contents.",
   "main": "index.js",
   "directories": {
