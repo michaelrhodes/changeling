@@ -61,12 +61,12 @@ Changeling.prototype._read = function() {
   var deleted = null 
   var lmtime = null
   var update = function(error, stat) {
-    // Give it a second before announcing
-    // a deletion. Sometimes the file is in
-    // the middle of saving.
+    // Give it half a second before announcing
+    // a deletion. Sometimes the file is in the
+    // middle of saving.
     if (error) {
       return deleted = setTimeout(
-        kill, 1000, 'has been deleted'
+        kill, 500, 'has been deleted'
       )
     }
    

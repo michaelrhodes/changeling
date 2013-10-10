@@ -42,5 +42,5 @@ run('announce deletion', function(test) {
   // Delete letter.
   setTimeout(function() {
     fs.unlink(path)
-  }, 1000)
+  }, 500)
 })
