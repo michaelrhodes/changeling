@@ -17,7 +17,7 @@ fs.writeFileSync(path, text[0])
 letter = changeling(path)
 
 run('announce update', function(test) {
-  letter.on('data', function(content) {
+  letter.once('data', function(content) {
     test.equal(
       content.toString(), text.join(''),
       'should have updated'
@@ -30,7 +30,7 @@ run('announce update', function(test) {
 })
 
 run('announce deletion', function(test) {
-  letter.on('error', function(error) {
+  letter.once('error', function(error) {
     test.assert(
       /has been deleted/.test(error.message),
       'should mention deletion'

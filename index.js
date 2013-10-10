@@ -85,14 +85,24 @@ Changeling.prototype._read = function() {
     }
 
     lmtime = mtime
-  
-    var stream = fs.createReadStream(thy.file)
-    stream.on('data', function(buffer) {
-      thy.push(buffer)
-    })
-    stream.on('error', function(error) {
-      kill(error.message)
-    })
+
+    var hasContent = false
+    fs.createReadStream(thy.file)
+      .on('data', function(buffer) {
+        hasContent = true
+        thy.push(buffer)
+      })
+      .on('end', function() {
+        // If the file is now empty, push
+        // an invisible character so
+        // updates can still happen.
+        if (!hasContent) {
+          thy.push('\u2060')
+        }
+      })
+      .on('error', function(error) {
+        kill(error.message)
+      })
   }
 }
 
