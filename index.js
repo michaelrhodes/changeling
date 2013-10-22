@@ -53,7 +53,7 @@ Changeling.prototype._read = function() {
    
     // Watch it for changes
     var directory = path.resolve(thy.file, '..')
-    watcher = fs.watch(directory, function(e, file) {
+    thy.watcher = fs.watch(directory, function(e, file) {
       if (file === path.basename(thy.file)) {
         fs.stat(thy.file, update)
       }
