@@ -3,21 +3,23 @@ var path = require('path')
 var util = require('util')
 var stream = require('stream')
 
-var watcher
 var Changeling = function(file) {
   if (!(this instanceof Changeling)) {
     return new Changeling(file)
   }
+
   stream.Readable.call(this)
+
   this.file = file 
+  this.watcher = null
   this.busy = false
 }
 
 util.inherits(Changeling, stream.Readable)
 
 Changeling.prototype.close = function() {
-  if (watcher) {
-    watcher.close() 
+  if (this.watcher) {
+    this.watcher.close() 
   }
 }
 
